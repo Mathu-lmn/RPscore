@@ -2,7 +2,7 @@ fx_version 'cerulean'
 game 'gta5'
 
 author 'Ali'
-description 'Script pour gérer les scores RP des joueurs'
+description 'RP score system'
 version '1.0.0'
 
 lua54 'yes'
