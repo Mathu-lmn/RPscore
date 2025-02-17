@@ -3,7 +3,7 @@ game 'gta5'
 
 author 'Ali'
 description 'RP score system'
-version '1.0.0'
+version '1.1.0'
 
 lua54 'yes'
 
@@ -14,7 +14,4 @@ server_scripts {
     'server.lua'
 }
 
-
-client_scripts {
-    'client.lua'
-}
+client_script 'client.lua'

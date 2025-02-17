@@ -21,8 +21,7 @@ ESX.RegisterServerCallback('rpscore:getPlayerScore', function(source, cb, target
     end
 end)
 
-RegisterServerEvent('rp:getScore')
-AddEventHandler('rp:getScore', function()
+RegisterServerEvent('rpscore:getScore', function()
     local _source = source
     local player = ESX.GetPlayerFromId(_source)
 
@@ -33,9 +32,9 @@ AddEventHandler('rp:getScore', function()
             ['@identifier'] = playerID
         }, function(score)
             if score then
-                TriggerClientEvent('rp:returnScore', _source, score)
+                TriggerClientEvent('rpscore:returnScore', _source, score)
             else
-                TriggerClientEvent('rp:returnScore', _source, 'C')
+                TriggerClientEvent('rpscore:returnScore', _source, 'C')
             end
         end)
     else
@@ -64,8 +63,7 @@ function ModifyRPScore(playerId, newScore)
     end
 end
 
-RegisterNetEvent('rpscore:modify')
-AddEventHandler('rpscore:modify', function(serverId, newRPScore)
+RegisterNetEvent('rpscore:modify', function(serverId, newRPScore)
     if newRPScore and debug and tostring(newRPScore):match("^[SABCDE]$") then
         ModifyRPScore(serverId, newRPScore)
     else
@@ -73,8 +71,7 @@ AddEventHandler('rpscore:modify', function(serverId, newRPScore)
     end
 end)
 
-RegisterServerEvent('rp:setScore')
-AddEventHandler('rp:setScore', function(newScore)
+RegisterNetEvent('rpscore:setScore', function(newScore)
     local _source = source
     local player = ESX.GetPlayerFromId(_source)
 
@@ -141,9 +138,9 @@ function CheckScores()
     end
 end
 
-Citizen.CreateThread(function()
+CreateThread(function()
     while true do
-        Citizen.Wait(1000) 
+        Wait(1000) 
         CheckScores()
     end
 end)
